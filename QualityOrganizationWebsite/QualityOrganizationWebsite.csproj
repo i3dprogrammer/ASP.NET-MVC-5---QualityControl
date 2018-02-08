@@ -204,6 +204,18 @@
     <Compile Include="Migrations\201802080229517_MakePublicationAbstractRequired.Designer.cs">
       <DependentUpon>201802080229517_MakePublicationAbstractRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802080605520_RemovingDetailsConstraint.cs" />
+    <Compile Include="Migrations\201802080605520_RemovingDetailsConstraint.Designer.cs">
+      <DependentUpon>201802080605520_RemovingDetailsConstraint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802080622295_TestMigration.cs" />
+    <Compile Include="Migrations\201802080622295_TestMigration.Designer.cs">
+      <DependentUpon>201802080622295_TestMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802080631219_FixMigration.cs" />
+    <Compile Include="Migrations\201802080631219_FixMigration.Designer.cs">
+      <DependentUpon>201802080631219_FixMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -214,6 +226,7 @@
     <Compile Include="ViewModels\PublicationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Fields.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\animate.min.css" />
@@ -305,9 +318,7 @@
     <Content Include="Views\Publications\Index.cshtml" />
     <Content Include="Views\Publications\Add.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
@@ -326,6 +337,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802080229517_MakePublicationAbstractRequired.resx">
       <DependentUpon>201802080229517_MakePublicationAbstractRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802080605520_RemovingDetailsConstraint.resx">
+      <DependentUpon>201802080605520_RemovingDetailsConstraint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802080622295_TestMigration.resx">
+      <DependentUpon>201802080622295_TestMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802080631219_FixMigration.resx">
+      <DependentUpon>201802080631219_FixMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

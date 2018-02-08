@@ -1,89 +1,84 @@
 ﻿@model QualityOrganizationWebsite.Models.Publication
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Title;
 }
 
-<h2>Details</h2>
+<section class="container">
+    <div class="publication creat-publication">
+        <div class="box-form">
+            <div class="header">
+                <h3>Publication</h3>
+            </div>
+            <form id="form-publication">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="details-creat">
+                            <label>Title:-</label>
+                            <p>@Model.Title</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="details-creat">
+                            <label>Authors:-</label>
+                            <p>\@Model.Authors</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="details-creat">
+                            <label>Research field:-</label>
+                            <p>@Model.ResearchField</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="details-creat">
+                            <label>Nationality:-</label>
+                            <p>@(Model.National?"National":"International")</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="details-creat">
+                            <label>Year of Research:-</label>
+                            <p>@Model.ResearchYear</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="details-creat">
+                            <label>Published in:-</label>
+                            <p>@Model.PubType.ToString()</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="details-creat">
+                            <label>@Model.PubType.ToString() Details/Name:-</label>
+                            <p>@Model.Details</p>
+                        </div>
+                    </div>
+                    @if (Model.PubType != QualityOrganizationWebsite.Models.Publication.PublicationType.Confrance)
+                    {
+                        <div class="col-md-6">
+                            <div class="details-creat">
+                                <label>Identifier (DOI, ISSN):-</label>
+                                <p>@Model.Identifier</p>
+                            </div>
+                        </div>
+                    }
+                    <div class="col-md-12">
+                        <div class="details-creat">
+                            <label>Abstract:-</label>
+                            <p class="abstract">@Model.Abstract</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="#" class="btn"><i class="fa fa-cloud-upload"></i> Change</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-<div>
-    <h4>Publication</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ResearchField)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ResearchField)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Authors)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Authors)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.National)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.National)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ResearchYear)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ResearchYear)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PubType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PubType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Details)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Details)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Identifier)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Identifier)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Abstract)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Abstract)
-        </dd>
-
-    </dl>
-</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

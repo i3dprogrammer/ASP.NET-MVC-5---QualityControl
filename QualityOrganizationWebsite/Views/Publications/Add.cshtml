@@ -11,7 +11,7 @@
                 <h3>Publication</h3>
             </div>
             @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Add", "Publications", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <div class="row">
@@ -19,35 +19,35 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Title)
                             @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "Title" } })
-                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "custom-alert" })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             @Html.LabelFor(model => model.Authors)
                             @Html.EditorFor(model => model.Authors, new { htmlAttributes = new { @class = "form-control", @placeholder = "Authors" } })
-                            @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "custom-alert" })
+                            @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             @Html.LabelFor(model => model.ResearchField)
-                            @Html.DropDownList("research_field", Model.ResearchFieldsList, new { @class = "selectpicker", @data_live_search = "true", @title = "Choose research field" })
+                            @Html.DropDownListFor(model => model.ResearchField, Model.ResearchFieldsList, new { @class = "selectpicker", @data_live_search = "true", @title = "Choose research field" })
+                            @Html.ValidationMessageFor(model => model.ResearchField, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             @Html.LabelFor(model => model.National)
-                            <select class="selectpicker" data-live-search="true" title="Choose" name="national">
-                                <option>National</option>
-                                <option>International</option>
-                            </select>
+                            @Html.DropDownListFor(model => model.National, Model.NationalityList, new { @class = "selectpicker", @data_live_search = "true", @title = "Choose Nationality" })
+                            @Html.ValidationMessageFor(model => model.National, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             @Html.LabelFor(model => model.ResearchYear)
-                            @Html.DropDownList("year", Model.ResearchYearsList, new { @class="selectpicker", @data_live_search="true", @title = "Choose publication year" })
+                            @Html.DropDownListFor(model => model.ResearchYear, Model.ResearchYearsList, new { @class = "selectpicker", @data_live_search = "true", @title = "Choose publication year" })
+                            @Html.ValidationMessageFor(model => model.ResearchYear, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -55,47 +55,47 @@
                             <label>Published In:-</label>
                             <div class="checkbox-group">
                                 <!--Journal-->
-                                <input type="radio" id="jonfrance" name="published_in" class="material-checkbox" data-target="jonfrance" value="1">
+                                <input type="radio" id="jonfrance" name="published_in" class="material-checkbox" data-target="jonfrance" value="journal">
                                 <label class="checkbox_label" for="jonfrance">Journal</label>
                                 <div class="jonfrance hidde">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control", @placeholder = "Journal Name" } })
+                                                @Html.EditorFor(model => model.JournalName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Journal Name" } })
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                @Html.EditorFor(model => model.Identifier, new { htmlAttributes = new { @class = "form-control", @placeholder = "DOI" } })
+                                                @Html.EditorFor(model => model.JournalDOI, new { htmlAttributes = new { @class = "form-control", @placeholder = "DOI" } })
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!--Confrance-->
-                                <input type="radio" id="confrance" data-target="confrance" name="published_in" class="material-checkbox" value="2">
+                                <input type="radio" id="confrance" data-target="confrance" name="published_in" class="material-checkbox" value="confrance">
                                 <label class="checkbox_label" for="confrance">Confrance</label>
                                 <div class="confrance hidde">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confrance Details" } })
+                                                @Html.EditorFor(model => model.ConfranceDetails, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confrance Details" } })
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!--Book-->
-                                <input type="radio" id="book" name="published_in" class="material-checkbox" data-target="book" value="3">
+                                <input type="radio" id="book" name="published_in" class="material-checkbox" data-target="book" value="book">
                                 <label class="checkbox_label" for="book">Book</label>
                                 <div class="book hidde">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control", @placeholder = "Book Name" } })
+                                                @Html.EditorFor(model => model.BookName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Book Name" } })
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                @Html.EditorFor(model => model.Identifier, new { htmlAttributes = new { @class = "form-control", @placeholder = "ISSN" } })
+                                                @Html.EditorFor(model => model.BookISSN, new { htmlAttributes = new { @class = "form-control", @placeholder = "ISSN" } })
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Abstract)
                             @Html.EditorFor(model => model.Abstract, new { htmlAttributes = new { @class = "form-control", @style = "resize:vertical;" } })
-                            @Html.ValidationMessageFor(model => model.Abstract, "", new { @class = "custom-alert" })
+                            @Html.ValidationMessageFor(model => model.Abstract, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-12">

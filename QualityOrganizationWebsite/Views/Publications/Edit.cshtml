@@ -1,108 +1,139 @@
-﻿@model QualityOrganizationWebsite.Models.Publication
+﻿@model QualityOrganizationWebsite.ViewModels.PublicationViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Publication";
 }
 
-<h2>Edit</h2>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Publication</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+<section class="container">
+    <div class="publication">
+        <div class="box-form">
+            <div class="header">
+                <h3>Publication</h3>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ResearchField, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ResearchField, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ResearchField, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Authors, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Authors, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.National, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.National)
-                    @Html.ValidationMessageFor(model => model.National, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            @using (Html.BeginForm("Add", "Publications", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Id)
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Title)
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "Title" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Authors)
+                            @Html.EditorFor(model => model.Authors, new { htmlAttributes = new { @class = "form-control", @placeholder = "Authors" } })
+                            @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ResearchField)
+                            @Html.DropDownListFor(model => model.ResearchField, Model.ResearchFieldsList, new { @class = "selectpicker", @data_live_search = "true", @title = "Choose research field" })
+                            @Html.ValidationMessageFor(model => model.ResearchField)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.National)
+                            @Html.DropDownListFor(model => model.National, Model.NationalityList, new { @class = "selectpicker", @data_live_search = "true", @title = "Choose Nationality" })
+                            @Html.ValidationMessageFor(model => model.National)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ResearchYear)
+                            @Html.DropDownListFor(model => model.ResearchYear, Model.ResearchYearsList, new { @class = "selectpicker", @data_live_search = "true", @title = "Choose publication year" })
+                            @Html.ValidationMessageFor(model => model.ResearchYear)
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Published In:-</label>
+                            <div class="checkbox-group">
+                                <!--Journal-->
+                                <input type="radio" id="jonfrance" name="published_in" class="material-checkbox" data-target="jonfrance" value="journal">
+                                <label class="checkbox_label" for="jonfrance">Journal</label>
+                                <div class="jonfrance hidde">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.EditorFor(model => model.JournalName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Journal Name" } })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.EditorFor(model => model.JournalDOI, new { htmlAttributes = new { @class = "form-control", @placeholder = "DOI" } })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Confrance-->
+                                <input type="radio" id="confrance" data-target="confrance" name="published_in" class="material-checkbox" value="confrance">
+                                <label class="checkbox_label" for="confrance">Confrance</label>
+                                <div class="confrance hidde">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.EditorFor(model => model.ConfranceDetails, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confrance Details" } })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Book-->
+                                <input type="radio" id="book" name="published_in" class="material-checkbox" data-target="book" value="book" />
+                                <label class="checkbox_label" for="book">Book</label>
+                                <div class="book hidde">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.EditorFor(model => model.BookName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Book Name" } })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.EditorFor(model => model.BookISSN, new { htmlAttributes = new { @class = "form-control", @placeholder = "ISSN" } })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Abstract)
+                            @Html.EditorFor(model => model.Abstract, new { htmlAttributes = new { @class = "form-control", @style = "resize:vertical;" } })
+                            @Html.ValidationMessageFor(model => model.Abstract, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-block"><i class="fa fa-cloud-upload"></i>Upload</button>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ResearchYear, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ResearchYear, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ResearchYear, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PubType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.PubType, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PubType, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Identifier, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Identifier, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Identifier, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Abstract, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Abstract, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Abstract, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+            }
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(function () {
+            @if (Model.PubType == QualityOrganizationWebsite.Models.Publication.PublicationType.Journal) {
+                <text>$("#jonfrance").click();</text>
+            }
+            @if (Model.PubType == QualityOrganizationWebsite.Models.Publication.PublicationType.Confrance) {
+                <text>$("#confrance").click();</text>
+            }
+            @if (Model.PubType == QualityOrganizationWebsite.Models.Publication.PublicationType.Book) {
+                <text>$("#book").click();</text>
+            }
+        });
+    </script>
 }
