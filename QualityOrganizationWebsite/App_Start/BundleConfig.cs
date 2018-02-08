@@ -26,6 +26,18 @@ namespace QualityOrganizationWebsite
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            // My bundles
+            bundles.Add(new ScriptBundle("~/Custom/JS").Include(
+                "~/Content/js/bootstrap-select.min.js",
+                "~/Content/js/custom.js",
+                "~/Content/js/wow.min.js"));
+            bundles.Add(new ScriptBundle("~/Custom/CSS").Include(
+                "~/Content/css/animate.min.css",
+                "~/Content/css/bootstrap-select.min.css",
+                "~/Content/css/bootstrap.min.css",
+                "~/Content/css/font-awesome.min.css",
+                "~/Content/css/style.css"));
         }
     }
 }

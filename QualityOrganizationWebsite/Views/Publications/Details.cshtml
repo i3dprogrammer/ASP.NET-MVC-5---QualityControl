@@ -1,0 +1,90 @@
+﻿@model QualityOrganizationWebsite.Models.Publication
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Publication</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResearchField)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResearchField)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Authors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Authors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.National)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.National)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResearchYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResearchYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PubType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PubType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Identifier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Identifier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abstract)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abstract)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
